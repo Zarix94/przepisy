@@ -62,6 +62,14 @@ public class Recipe {
     private String ingredients;
     private String description;
     private long author_id;
+    @Transient
+    private Result result;
+
+    public Recipe() {
+        result = new Result();
+        result.setResult(true);
+    }
+
 
     public Long getId() {
         return id;
@@ -82,6 +90,19 @@ public class Recipe {
                 ", description" + description + '\'' +
                 ", author_id=" + author_id +
                 '}';
+    }
+
+    public Result addRecipe(){
+        if (result.getResult()) {
+            SessionFactory factory = new Configuration().configure().buildSessionFactory();
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.save(this);
+            tx.commit();
+            factory.close();
+        }
+
+        return result;
     }
 
 

@@ -25,6 +25,7 @@ public class Users {
     @Column(unique = true)
     private String email;
     private String password;
+    private int type = 0;
 
     @Transient
     private Result result;
@@ -70,6 +71,7 @@ public class Users {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", type=" + type +
 
                 '}';
     }
@@ -190,4 +192,11 @@ public class Users {
         return user;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 }

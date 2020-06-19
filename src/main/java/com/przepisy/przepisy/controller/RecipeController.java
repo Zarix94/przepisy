@@ -62,6 +62,12 @@ public class RecipeController {
         return generateTableHtml(results);
     }
 
+    @PostMapping("/saveRecipe")
+    public String saveRecipe(@ModelAttribute("recipe") Recipe recipeObj, BindingResult result) {
+        Result resultObj = recipeObj.addRecipe();
+        return resultObj.toJson();
+    }
+
 
 }
 

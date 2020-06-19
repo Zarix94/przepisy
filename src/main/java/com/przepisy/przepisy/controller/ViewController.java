@@ -47,8 +47,25 @@ public class ViewController {
     }
 
     @GetMapping("/recipes")
-    public String recipes(Model model) {
+    public String recipes(Model model, HttpSession session) {
+        if(session.getAttribute("userId") != null)
+            model.addAttribute("userId", session.getAttribute("userId"));
+        else
+            model.addAttribute("userId", null);
+
         return "recipes";
+    }
+
+    @GetMapping("/addRecipe")
+    public String addRecipe(Model model,HttpSession session) {
+        if(session.getAttribute("userId") != null)
+            model.addAttribute("userId", session.getAttribute("userId"));
+        else
+            model.addAttribute("userId", null);
+        if(session.getAttribute("userId") != null)
+            return "addRecipe";
+        else
+            return "recipes";
     }
 
 
