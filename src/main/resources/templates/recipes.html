@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Przepisy Internetu - Strona główna</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+    <script type="text/javascript" src="/js/recipes.js"></script>
+
+</head>
+<body>
+    <div class="container" style="margin: 0px; padding: 5px; max-width: 100%;">
+        <div class="row" style="margin-left: 50px; margin-right: 50px; padding: 10px;">
+            <div class="col-sm" style="display: flex;">
+                <img src="/img/ico_logo.png" style="width: 110px;"/>
+                <span id="site-title"><a id="site-title-link" href="/index">Przepisy Internetu</a></span>
+                <ul style="display: inherit">
+                    <li><span class="menu-link"><a href="/recipes">Przepisy</a></span></li>
+                    <li th:if="${userId == null}"><span class="menu-link"><a href="/login">Zaloguj</a></span></li>
+                    <li th:if="${userId == null}"><span class="menu-link"><a href="/register">Rejestracja</a></span></li>
+                    <li th:if="${userId != null}"><span class="menu-link"><a href="/logout">Wyloguj</a></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm" style="padding: 10px; background: #f5efe0; box-sizing: border-box;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm" id="recipe-list">
+            </div>
+          </div>
+        <div class="row" style="padding: 10px; background: #f5efe0; box-sizing: border-box;">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm" style="font-size: 12px; text-align: right;">
+                Przepisy Internetu © 2020 Sebastian Nazaruk
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

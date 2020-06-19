@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Przepisy Internetu - Rejestracja</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/register.js"></script>
+</head>
+<body>
+<div class="container" style="margin: 0px; padding: 5px; max-width: 100%;">
+    <div class="row" style="margin-left: 50px; margin-right: 50px; padding: 10px;">
+        <div class="col-sm" style="display: flex;">
+            <img src="/img/ico_logo.png" style="width: 110px;"/>
+            <span id="site-title"><a id="site-title-link" href="/index">Przepisy Internetu</a></span>
+            <ul style="display: inherit">
+                <li><span class="menu-link"><a href="/recipes">Przepisy</a></span></li>
+                <li><span class="menu-link"><a href="/login">Zaloguj</a></span></li>
+                <li><span class="menu-link"><a href="/register">Rejestracja</a></span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm" style="padding: 10px; background: #f5efe0; box-sizing: border-box;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm" style="padding: 10px; background-color: #dadada; margin: 10px; border: 2px solid #f5efe0; border-radius: 2px;">
+            <form>
+                <div>Login</div>
+                <input type="text" style="width: 300px;" id="login" required="true" name="login"><br><br>
+                <div>Hasło</div>
+                <input type="password" style="width: 300px;" id="password" required="true" name="password"><br><br>
+                <div>Powtórz hasło</div>
+                <input type="password" style="width: 300px;" id="repeatPassword" required="true" name="repeatPassword"><br><br>
+                <div>Adres E-mail</div>
+                <input type="email" style="width: 300px;" id="email" required="true" name="email"><br><br>
+                <div>Powtórz e-mail</div>
+                <input type="email" style="width: 300px;" id="repeatEmail" required="true" name="repeatEmail"><br><br>
+                <input class="btn btn-light" style="width: 200px; float: right;" type="button" id="btnRegister" value="Zarejestruj się">
+            </form>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    <div class="row" style="padding: 10px; background: #f5efe0; box-sizing: border-box;">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+        </div>
+        <div class="col-sm" style="font-size: 12px; text-align: right;">
+            Przepisy Internetu © 2020 Sebastian Nazaruk
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
