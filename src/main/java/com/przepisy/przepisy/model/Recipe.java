@@ -57,6 +57,16 @@ public class Recipe {
         this.author_id = author_id;
     }
 
+    public String getAuthor(){
+        String author;
+
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Users user = session.get(Users.class, author_id);
+
+        return user.getLogin();
+    }
+
     private String name;
     private int diff;
     private String ingredients;

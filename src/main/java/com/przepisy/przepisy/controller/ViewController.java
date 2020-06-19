@@ -1,5 +1,7 @@
 package com.przepisy.przepisy.controller;
 
+import com.przepisy.przepisy.model.Recipe;
+import com.przepisy.przepisy.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -68,6 +70,28 @@ public class ViewController {
             return "recipes";
     }
 
+    @GetMapping("/showRecipe")
+    public String showRecipe(@RequestParam(name="id", required=false) long id, HttpSession session, Model model) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session hbSession = factory.openSession();
+        Recipe recipe = hbSession.get(Recipe.class, id);
+
+        if(recipe != null)
+            model.addAttribute("recipe", recipe);
+        else
+            model.addAttribute("recipe", null);
+
+        if(session.getAttribute("userId") != null)
+            model.addAttribute("userId", session.getAttribute("userId"));
+        else
+            model.addAttribute("userId", null);
+
+
+
+
+        return "showRecipe";
+
+    }
 
 }
 

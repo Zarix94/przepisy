@@ -64,6 +64,10 @@ public class Users {
         this.login = login;
     }
 
+    public String getLogin() {
+       return login;
+    }
+
     @Override
     public String toString() {
         return "User{" +

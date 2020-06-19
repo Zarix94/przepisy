@@ -12,9 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
@@ -26,23 +24,35 @@ import java.util.List;
 @RestController
 public class RecipeController {
 
+    private String getAuhtor(long authorId) {
+        String author;
 
-    private String generateTableHtml(List<Recipe> receipts){
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Users user = session.get(Users.class, authorId);
+
+        return user.getLogin();
+    }
+
+    private String generateTableHtml(List<Recipe> receipts) {
         String html = "";
         html += "<table id=\"tblRecipe\" class=\"display\" style=\"width: 100%\">";
         html += "  <thead>";
-        html += "     <tr>";
-        html += "       <th>Nazwa</th>";
-        html += "       <th>Poziom trudności</th>";
-        html += "       <th>Autor</th>";
-        html += "        </tr>";
+        html += "       <tr>";
+        html += "          <th>Nazwa</th>";
+        html += "          <th>Poziom trudności</th>";
+        html += "          <th>Autor</th>";
+        html += "          <th>Zobacz</th>";
+        html += "       </tr>";
         html += "   </thead>";
         html += "   <tbody>";
-        for (Recipe recipe: receipts) {
-            html += "<tr data-recipe-id="+String.valueOf(recipe.getId())+">";
+        for (Recipe recipe : receipts) {
+            html += "<tr>";
             html += "<td>" + recipe.getName() + "</td>";
             html += "<td>" + String.valueOf(recipe.getDiff()) + "</td>";
-            html += "<td>" + String.valueOf(recipe.getAuthor_id()) + "</td>";
+            html += "<td>" + getAuhtor(recipe.getAuthor_id()) + "</td>";
+            html += "<td><a href=\"showRecipe?id=" + String.valueOf(recipe.getId()) + "\"><img src=\"/img/ico-search.png\" style=\"width: 25px;\"/></a></td>";
+
             html += " </tr>";
         }
         html += "   </tbody>";
@@ -63,10 +73,13 @@ public class RecipeController {
     }
 
     @PostMapping("/saveRecipe")
-    public String saveRecipe(@ModelAttribute("recipe") Recipe recipeObj, BindingResult result) {
+    public String saveRecipe(@ModelAttribute("recipe") Recipe recipeObj, BindingResult result, HttpSession session) {
+        recipeObj.setAuthor_id((long) session.getAttribute("userId"));
         Result resultObj = recipeObj.addRecipe();
         return resultObj.toJson();
     }
+
+
 
 
 }
